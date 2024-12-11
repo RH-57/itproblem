@@ -187,11 +187,18 @@
         var trendData = @json($trendData); // Data per kategori
         var months = @json(array_map(fn($m) => DateTime::createFromFormat('!m', $m)->format('F'), $months)); // Bulan dalam format teks
 
+        const colors = [
+            { borderColor: 'rgba(87, 148, 242, 1)', backgroundColor: 'rgba(87, 148, 242, 0.3)' }, // Warna 1
+            { borderColor: 'rgba(0, 128, 0, 1)', backgroundColor: 'rgba(0, 128, 0, 0.3)' }, // Warna 2
+            { borderColor: 'rgba(255, 0, 0, 1)', backgroundColor: 'rgba(255, 0, 0, 0.3)' }  // Warna 3
+        ];
+
         // Buat dataset untuk Chart.js
-        var datasets = trendData.map(item => ({
+        var datasets = trendData.map((item, index) => ({
             label: item.label,
             data: item.data,
-            borderColor: `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 1)`,
+            borderColor: colors[index % colors.length].borderColor, // Pilih warna berdasarkan index
+            backgroundColor: colors[index % colors.length].backgroundColor, // Pilih warna berdasarkan index
             borderWidth: 2,
             fill: false,
             tension: 0.1

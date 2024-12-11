@@ -94,7 +94,7 @@
             <!-- Add Category Modal -->
             <div class="modal fade" id="addSubSubCategoryModal" tabindex="-1" aria-labelledby="addSubSubCategoryModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
+                    <div class="modal-content bg-secondary">
                         <div class="modal-header">
                             <h5 class="modal-title" id="addSubSubCategoryModalLabel">Tambah Sub-Sub-Kategori</h5>
                             <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -119,7 +119,7 @@
             @foreach($subsubcategories as $subsubcategory)
             <div class="modal fade" id="updateSubSubCategoryModal-{{ $subsubcategory->id }}" tabindex="-1" aria-labelledby="updateSubSubCategoryModal-{{ $subsubcategory->id }}" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
+                    <div class="modal-content bg-secondary">
                         <form action="{{ route('subsubcategories.update', ['category' => $category->slug, 'subcategory' => $subcategory->slug, 'subsubcategory' => $subsubcategory->id])}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')

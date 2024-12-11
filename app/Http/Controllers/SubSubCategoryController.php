@@ -39,7 +39,7 @@ class SubSubCategoryController extends Controller
     public function update(Request $request, Category $category, SubCategory $subcategory, SubSubCategory $subsubcategory)
     {
         $request->validate([
-            'name'  => 'required|string|min:2' . $subsubcategory->id
+            'name'  => 'required|string|min:2'
         ]);
 
         $subsubcategory->update([

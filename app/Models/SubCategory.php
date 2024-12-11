@@ -12,6 +12,7 @@ class SubCategory extends Model
     protected $fillable = [
         'category_id',
         'name',
+        'slug'
     ];
 
     use SoftDeletes;
@@ -40,6 +41,12 @@ class SubCategory extends Model
 
         static::updating(function ($subcategory) {
             $subcategory->slug = Str::slug($subcategory->name);
+        });
+
+        static::deleting(function($subcategory) {
+            $subcategory->subSubCategories->each(function ($subSubCategory) {
+                $subSubCategory->delete();
+            });
         });
     }
 

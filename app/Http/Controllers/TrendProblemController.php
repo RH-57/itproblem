@@ -16,12 +16,12 @@ class TrendProblemController extends Controller
         $selectedYear = $request->input('year', Carbon::now()->year);
 
         //Total kerusakan sesuai tahun yang dipilih
-        $totalReportInYear = DB::table('problem_reports')
+        $totalReportInYear = ProblemReport::withoutTrashed()
             ->whereYear('report_date', $selectedYear)
             ->count();
 
         // Ambil data kategori dan kerusakan
-        $trendDataByCategory = DB::table('problem_reports')
+        $trendDataByCategory = ProblemReport::withoutTrashed()
             ->join('categories', 'problem_reports.category_id', '=', 'categories.id')
             ->select(
                 DB::raw('MONTH(problem_reports.report_date) as month'),
@@ -33,7 +33,7 @@ class TrendProblemController extends Controller
             ->orderBy('month')
             ->get();
 
-        $frequentSubSubCategories = DB::table('problem_reports')
+        $frequentSubSubCategories = ProblemReport::withoutTrashed()
             ->join('sub_sub_categories', 'problem_reports.subsubcategory_id', '=', 'sub_sub_categories.id')
             ->select(
                 DB::raw('sub_sub_categories.name as sub_sub_category_name'),
@@ -46,7 +46,7 @@ class TrendProblemController extends Controller
             ->get();
 
          // Data user yang paling sering melapor
-        $frequentReporters = DB::table('problem_reports')
+        $frequentReporters = ProblemReport::withoutTrashed()
             ->select(
                 DB::raw('user as user_name'),
                 DB::raw('COUNT(*) as total_reports')

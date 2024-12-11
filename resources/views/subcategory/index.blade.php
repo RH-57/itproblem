@@ -94,7 +94,7 @@
             <!-- Add Category Modal -->
             <div class="modal fade" id="addSubCategoryModal" tabindex="-1" aria-labelledby="addSubCategoryModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
+                    <div class="modal-content bg-secondary">
                         <div class="modal-header">
                             <h5 class="modal-title" id="addSubCategoryModalLabel">Tambah Sub-Kategori</h5>
                             <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -119,7 +119,7 @@
             @foreach($subcategories as $subcategory)
             <div class="modal fade" id="updateSubCategoryModal-{{ $subcategory->id }}" tabindex="-1" aria-labelledby="updateSubCategoryModal-{{ $subcategory->id }}" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
+                    <div class="modal-content bg-secondary">
                         <form action="{{ route('subcategories.update', ['category' => $category->slug, 'subcategory' => $subcategory->slug])}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -130,7 +130,7 @@
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nama Sub-Kategori</label>
-                                    <input type="text" class="form-control" id="name" name="name" value="{{ $subcategory->name }}">
+                                    <input type="text" class="form-control" id="name" name="name" value="{{ $subcategory->name }}" required>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>

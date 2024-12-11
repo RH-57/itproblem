@@ -123,9 +123,10 @@
             </div>
             <!-- End Add Branch Modal -->
             <!-- Update Branch Modal -->
+            @foreach ($branches as $branch)
             <div class="modal fade" id="updateBranchModal-{{ $branch->id }}" tabindex="-1" aria-labelledby="updateBranchModal" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
+                    <div class="modal-content bg-secondary">
                         <form action="{{ route('branches.update', $branch->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -151,6 +152,7 @@
                     </div>
                 </div>
             </div>
+            @endforeach
             <!-- Footer Start -->
             @include('partials.footer')
             <!-- Footer End -->

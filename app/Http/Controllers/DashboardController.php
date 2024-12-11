@@ -31,7 +31,7 @@ class DashboardController extends Controller
         $trendDataByCategory = [];
 
         foreach ($categories as $category) {
-            $data = ProblemReport::select(
+            $data = ProblemReport::withoutTrashed()->select(
                     DB::raw('YEAR(report_date) as year'), // Ambil tahun
                     DB::raw('COUNT(*) as total_damage')  // Total kerusakan
                 )
@@ -53,7 +53,7 @@ class DashboardController extends Controller
 
 
         //Menampilkan chart kerusakan menurut kategori
-        $categoryDamageData = ProblemReport::select('category_id', DB::raw('count(*) as total_damage'))  // Filter berdasarkan tahun berjalan
+        $categoryDamageData = ProblemReport::withoutTrashed()->select('category_id', DB::raw('count(*) as total_damage'))  // Filter berdasarkan tahun berjalan
                                     ->groupBy('category_id')
                                     ->get();
 
@@ -67,7 +67,7 @@ class DashboardController extends Controller
 
 
         //Menampilkan chart kerusakan menurut subkategori
-        $subCategoryDamageData = ProblemReport::select('subcategory_id', DB::raw('count(*) as total_damage'))
+        $subCategoryDamageData = ProblemReport::withoutTrashed()->select('subcategory_id', DB::raw('count(*) as total_damage'))
                                                 ->groupBy('subcategory_id')
                                                 ->get();
 
@@ -78,7 +78,7 @@ class DashboardController extends Controller
         })->toArray();
 
 
-        $subSubCategoryDamageData = ProblemReport::select('subsubcategory_id', DB::raw('count(*) as total_damage'))
+        $subSubCategoryDamageData = ProblemReport::withoutTrashed()->select('subsubcategory_id', DB::raw('count(*) as total_damage'))
                                                 ->groupBy('subsubcategory_id')
                                                 ->get();
 
@@ -89,14 +89,14 @@ class DashboardController extends Controller
         })->toArray();
 
         //Menampilkan user yf paling banyak melapor
-        $mostActiveUser = ProblemReport::select('user', DB::raw('count(*) as report_count'))
+        $mostActiveUser = ProblemReport::withoutTrashed()->select('user', DB::raw('count(*) as report_count'))
                                         ->groupBy('user')
                                         ->orderBy('report_count', 'DESC')
                                         ->take(5)
                                         ->get();  // Ambil user dengan laporan terbanyak
 
         //menampilkan list subsubkategori yang sering rusak
-        $mostDamagedParts = ProblemReport::select('sub_sub_categories.name', DB::raw('count(problem_reports.id) as total_damage'))
+        $mostDamagedParts = ProblemReport::withoutTrashed()->select('sub_sub_categories.name', DB::raw('count(problem_reports.id) as total_damage'))
                                         ->join('sub_sub_categories', 'problem_reports.subsubcategory_id', '=', 'sub_sub_categories.id')
                                         ->groupBy('sub_sub_categories.name')
                                         ->orderBy('total_damage', 'DESC')
