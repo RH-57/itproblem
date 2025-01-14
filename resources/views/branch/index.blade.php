@@ -49,8 +49,8 @@
             @include('partials.header')
             <!-- Navbar End -->
             <!-- Sale & Revenue Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
+            <div class="container-fluid pt-2 px-2">
+                <div class="row g-1">
                     <div class="col-sm-12 col-xl-12">
                         <div class="bg-secondary rounded h-100 p-4">
                             <div class="d-flex justify-content-between align-items-center mb-4">

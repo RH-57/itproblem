@@ -49,7 +49,7 @@
 
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
-                    <span><a href="{{ route('dashboard.index')}}">Dasboard</a> > Trend</span>
+                    <span><a href="{{ route('dashboard.index')}}">Dasboard</a> > <a href="{{ route('kerusakan.index')}}">Kerusakan</a> > Trend</span>
                 </div>
             </div>
             <!--

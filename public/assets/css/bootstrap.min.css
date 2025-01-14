@@ -642,7 +642,7 @@ progress {
     padding-right: var(--bs-gutter-x, .75rem);
     padding-left: var(--bs-gutter-x, .75rem);
     margin-right: auto;
-    margin-left: auto
+    margin-left: auto;
 }
 
 @media (min-width: 576px) {
@@ -5147,7 +5147,7 @@ fieldset:disabled .btn {
 .pagination {
     display: flex;
     padding-left: 0;
-    list-style: none
+    list-style: none;
 }
 
 .page-link {

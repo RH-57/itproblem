@@ -51,7 +51,7 @@
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
-                    <span><a href="{{route('dashboard.index')}}">Dashboard</a> > <a href="{{route('problems.index')}}">Laporan</a> > Detail Laporan</span>
+                    <span><a href="{{route('kerusakan.index')}}">Dashboard</a> > Detail Laporan</span>
                     <div class="col-sm-12 col-xl-12">
                         <div class="bg-secondary rounded h-100 p-4">
                             <h2 class="mb-4">Detail Laporan</h2>

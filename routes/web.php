@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\ProblemReportController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardKerusakanController;
 use App\Models\Branch;
 use App\Models\Category;
 use App\Models\ProblemReport;
@@ -25,8 +26,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');;
-
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/dashboard/kerusakan', [DashboardKerusakanController::class, 'index'])->name('dashboard.kerusakan.index');
+    Route::resource('/dashboard/kerusakan', DashboardKerusakanController::class);
     Route::resource('/branches', App\Http\Controllers\BranchController::class);
     Route::resource('/categories', App\Http\Controllers\CategoryController::class);
     Route::resource('/categories/{category}/subcategories', App\Http\Controllers\SubcategoryController::class)->scoped([
